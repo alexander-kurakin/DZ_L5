@@ -23,6 +23,12 @@ namespace Assets._Project.Develop.Runtime.Utilities.Conditions
             _conditions.Add(condition);
             return this;
         }
+        
+        public ICompositeCondition Remove(ICondition condition)
+        {
+            _conditions.Remove(condition);
+            return this;
+        }
 
         public bool Evaluate()
         {
@@ -41,10 +47,6 @@ namespace Assets._Project.Develop.Runtime.Utilities.Conditions
             return result;
         }
 
-        public ICompositeCondition Remove(ICondition condition)
-        {
-            _conditions.Remove(condition);
-            return this;
-        }
+
     }
 }
