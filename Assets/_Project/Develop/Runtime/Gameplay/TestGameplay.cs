@@ -1,5 +1,4 @@
 ﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore;
-using Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using UnityEngine;
 
@@ -37,8 +36,8 @@ namespace Assets._Project.Develop.Runtime.Gameplay
             if (Input.GetKeyDown(KeyCode.Space))
                 _entity.TakeDamageRequest.Invoke(50);
 
-            //if (Input.GetKeyDown(KeyCode.R))
-              //  _entity.StartAttackRequest.Invoke();
+            if (Input.GetKeyDown(KeyCode.T))
+                _entity.StartTeleportationRequest.Invoke();
 
             //Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
