@@ -21,7 +21,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Teleportation
         private ReactiveVariable<float> _teleportEnergyCost;
 
         private IDisposable _teleportRequestDispose;
-        private IDisposable _spendEnergyRequestDispose;
+        private IDisposable _spendEnergyEventDispose;
 
 
         public void OnInit(Entity entity)
@@ -36,7 +36,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Teleportation
             _spendEnergyEvent = entity.SpendEnergyEvent;
 
             _teleportRequestDispose = _startTeleportRequest.Subscribe(OnTeleportRequest);
-            _spendEnergyRequestDispose = _spendEnergyEvent.Subscribe(OnEnergySpendSucceeded);
+            _spendEnergyEventDispose = _spendEnergyEvent.Subscribe(OnEnergySpendSucceeded);
         }
 
         private void OnTeleportRequest()
@@ -64,7 +64,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Teleportation
         public void OnDispose()
         {
             _teleportRequestDispose.Dispose();
-            _spendEnergyRequestDispose.Dispose();
+            _spendEnergyEventDispose.Dispose();
         }
     }
 }
