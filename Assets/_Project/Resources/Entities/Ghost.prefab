@@ -178,7 +178,7 @@ PrefabInstance:
     - target: {fileID: 62956036438060799, guid: 6866f045f7996a24bb1312cb86a91d79,
         type: 3}
       propertyPath: m_Name
-      value: Ghost1
+      value: Ghost
       objectReference: {fileID: 0}
     - target: {fileID: 266444240801978367, guid: 6866f045f7996a24bb1312cb86a91d79,
         type: 3}
@@ -258,6 +258,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2788539638560889829}
+    - targetCorrespondingSourceObject: {fileID: 62956036438060799, guid: 6866f045f7996a24bb1312cb86a91d79,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3374357181431238554}
   m_SourcePrefab: {fileID: 100100000, guid: 6866f045f7996a24bb1312cb86a91d79, type: 3}
 --- !u!4 &6184043881470378523 stripped
 Transform:
@@ -360,3 +364,15 @@ CapsuleCollider:
   m_Height: 2.4271564
   m_Direction: 1
   m_Center: {x: 0, y: 1.2135782, z: 0}
+--- !u!114 &3374357181431238554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7694565146182115110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd194efa6a14b43862af3a94fed4a76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

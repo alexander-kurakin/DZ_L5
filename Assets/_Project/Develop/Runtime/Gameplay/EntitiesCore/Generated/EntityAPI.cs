@@ -470,20 +470,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Energy.CurrentEnergy() {Value = value}); 
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.Energy.EnergyRecoveryAmount EnergyRecoveryAmountC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Energy.EnergyRecoveryAmount>();
-
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> EnergyRecoveryAmount => EnergyRecoveryAmountC.Value;
-
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddEnergyRecoveryAmount()
-		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Energy.EnergyRecoveryAmount() { Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() }); 
-		}
-
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddEnergyRecoveryAmount(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
-		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Energy.EnergyRecoveryAmount() {Value = value}); 
-		}
-
 		public Assets._Project.Develop.Runtime.Gameplay.Features.Energy.SpendEnergyRequest SpendEnergyRequestC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.Energy.SpendEnergyRequest>();
 
 		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent<System.Single> SpendEnergyRequest => SpendEnergyRequestC.Value;
@@ -800,18 +786,73 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
 			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.Attack.InAttackCooldown() {Value = value}); 
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.Features.AreaTakeDamage.AreaDamage AreaDamageC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AreaTakeDamage.AreaDamage>();
+		public Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.AreaImpactDamage AreaImpactDamageC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.AreaImpactDamage>();
 
-		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> AreaDamage => AreaDamageC.Value;
+		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> AreaImpactDamage => AreaImpactDamageC.Value;
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAreaDamage()
+		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAreaImpactDamage()
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AreaTakeDamage.AreaDamage() { Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() }); 
+			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.AreaImpactDamage() { Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() }); 
 		}
 
-		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAreaDamage(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAreaImpactDamage(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
 		{
-			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AreaTakeDamage.AreaDamage() {Value = value}); 
+			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.AreaImpactDamage() {Value = value}); 
+		}
+
+		public Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.AreaImpactRadius AreaImpactRadiusC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.AreaImpactRadius>();
+
+		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> AreaImpactRadius => AreaImpactRadiusC.Value;
+
+		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAreaImpactRadius()
+		{
+			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.AreaImpactRadius() { Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single>() }); 
+		}
+
+		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAreaImpactRadius(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.AreaImpactRadius() {Value = value}); 
+		}
+
+		public Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.AreaImpactMask AreaImpactMaskC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.AreaImpactMask>();
+
+		public UnityEngine.LayerMask AreaImpactMask => AreaImpactMaskC.Value;
+
+		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAreaImpactMask(UnityEngine.LayerMask value)
+		{
+			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.AreaImpactMask() {Value = value}); 
+		}
+
+		public Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.AreaImpactCollidersBuffer AreaImpactCollidersBufferC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.AreaImpactCollidersBuffer>();
+
+		public Assets._Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider> AreaImpactCollidersBuffer => AreaImpactCollidersBufferC.Value;
+
+		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAreaImpactCollidersBuffer(Assets._Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider> value)
+		{
+			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.AreaImpactCollidersBuffer() {Value = value}); 
+		}
+
+		public Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.AreaImpactEntitiesBuffer AreaImpactEntitiesBufferC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.AreaImpactEntitiesBuffer>();
+
+		public Assets._Project.Develop.Runtime.Utilities.Buffer<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> AreaImpactEntitiesBuffer => AreaImpactEntitiesBufferC.Value;
+
+		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddAreaImpactEntitiesBuffer(Assets._Project.Develop.Runtime.Utilities.Buffer<Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity> value)
+		{
+			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.AreaImpactEntitiesBuffer() {Value = value}); 
+		}
+
+		public Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.DealAreaImpactDamageRequest DealAreaImpactDamageRequestC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.DealAreaImpactDamageRequest>();
+
+		public Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent DealAreaImpactDamageRequest => DealAreaImpactDamageRequestC.Value;
+
+		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddDealAreaImpactDamageRequest()
+		{
+			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.DealAreaImpactDamageRequest() { Value = new Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent() }); 
+		}
+
+		public Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Entity AddDealAreaImpactDamageRequest(Assets._Project.Develop.Runtime.Utilities.Reactive.ReactiveEvent value)
+		{
+			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage.DealAreaImpactDamageRequest() {Value = value}); 
 		}
 
 		public Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage.TakeDamageRequest TakeDamageRequestC => GetComponent<Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage.TakeDamageRequest>();

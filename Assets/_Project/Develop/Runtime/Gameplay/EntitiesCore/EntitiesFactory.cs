@@ -1,6 +1,6 @@
 ﻿using Assets._Project.Develop.Runtime.Gameplay.EntitiesCore.Mono;
 using Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage;
-using Assets._Project.Develop.Runtime.Gameplay.Features.AreaTakeDamage;
+using Assets._Project.Develop.Runtime.Gameplay.Features.AreaDamage;
 using Assets._Project.Develop.Runtime.Gameplay.Features.Attack;
 using Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Shoot;
 using Assets._Project.Develop.Runtime.Gameplay.Features.ContactTakeDamage;
@@ -131,8 +131,11 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
             entity
                 .AddMaxHealth(new ReactiveVariable<float>(100))
                 .AddCurrentHealth(new ReactiveVariable<float>(100))
-                .AddMaxEnergy(new  ReactiveVariable<float>(100))
-                .AddCurrentEnergy(new ReactiveVariable<float>(100)) 
+                .AddMaxEnergy(new ReactiveVariable<float>(100))
+                .AddCurrentEnergy(new ReactiveVariable<float>(100))
+                .AddEnergyRecoveryProcessInitialTime(new ReactiveVariable<float>(3))
+                .AddEnergyRecoveryProcessCurrentTime()
+                .AddInEnergyRecoveryProcess()
                 .AddIsDead()
                 .AddInDeathProcess()
                 .AddDeathProcessInitialTime(new ReactiveVariable<float>(2))
@@ -150,10 +153,16 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
                 .AddTeleportDelayTime(new ReactiveVariable<float>(1))
                 .AddTeleportDelayEndEvent()
                 .AddTeleportationRadius(new ReactiveVariable<float>(10))
-                .AddTeleportEnergyCost(new  ReactiveVariable<float>(35))
+                .AddTeleportEnergyCost(new ReactiveVariable<float>(35))
                 .AddTeleportCooldownProcessInitialTime(new ReactiveVariable<float>(2))
                 .AddTeleportCooldownProcessCurrentTime()
-                .AddInTeleportCooldownProcess();
+                .AddInTeleportCooldownProcess()
+                .AddAreaImpactDamage(new ReactiveVariable<float>(50))
+                .AddAreaImpactRadius(new ReactiveVariable<float>(6))
+                .AddAreaImpactMask(new LayerMask { value = 1 << LayerMask.NameToLayer("Characters") })
+                .AddAreaImpactCollidersBuffer(new Buffer<Collider>(64))
+                .AddAreaImpactEntitiesBuffer(new Buffer<Entity>(64))
+                .AddDealAreaImpactDamageRequest();
             
             ICompositeCondition canTeleport = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false))
@@ -179,8 +188,9 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
                 .AddCanApplyDamage(canApplyDamage)
                 .AddCanTeleport(canTeleport)
                 .AddCanSpendEnergy(canSpendEnergy);
-            
+
             entity
+                .AddSystem(new EnergyRecoverySystem())
                 .AddSystem(new SpendEnergySystem())
                 .AddSystem(new StartTeleportSystem())
                 .AddSystem(new TeleportProcessTimerSystem())
@@ -192,7 +202,10 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
                 .AddSystem(new DeathSystem())
                 .AddSystem(new DisableCollidersOnDeathSystem())
                 .AddSystem(new DeathProcessTimerSystem())
-                .AddSystem(new SelfReleaseSystem(_entitiesLifeContext));
+                .AddSystem(new SelfReleaseSystem(_entitiesLifeContext))
+                .AddSystem(new AreaImpactDamageContactsDetectingSystem())
+                .AddSystem(new AreaDamageEntitiesFilterSystem(_collidersRegistryService))
+                .AddSystem(new DealAreaDamageSystem());
              
             _entitiesLifeContext.Add(entity);
             

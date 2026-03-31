@@ -13,15 +13,18 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Teleportation
 
         private ReactiveEvent _teleportDelayEndEvent;
 
+        private ReactiveEvent _teleportImpactDamageRequest;
+        
         private IDisposable _teleportDelayEndDisposable;
         
         public void OnInit(Entity entity)
         {
             _transform = entity.Transform;
             _teleportationRadius = entity.TeleportationRadius;
-            
+
             _teleportDelayEndEvent = entity.TeleportDelayEndEvent;
 
+            _teleportImpactDamageRequest = entity.DealAreaImpactDamageRequest;
             _teleportDelayEndDisposable = _teleportDelayEndEvent.Subscribe(OnTeleportDelayEnd);
         }
 
@@ -31,6 +34,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Teleportation
             Vector3 newPosition = new Vector3(random2DPoint.x, 0, random2DPoint.y);
             
             _transform.position = newPosition;
+            _teleportImpactDamageRequest.Invoke();
             
             Debug.Log($"Teleported Transform: {_transform.name}, in a random position:  {newPosition}" );
         }

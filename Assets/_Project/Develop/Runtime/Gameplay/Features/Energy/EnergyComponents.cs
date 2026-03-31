@@ -14,11 +14,6 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Energy
         public ReactiveVariable<float> Value;
     }
     
-    public class EnergyRecoveryAmount : IEntityComponent
-    {
-        public ReactiveVariable<float> Value;
-    }
-
     public class SpendEnergyRequest : IEntityComponent
     {
         public ReactiveEvent<float> Value;

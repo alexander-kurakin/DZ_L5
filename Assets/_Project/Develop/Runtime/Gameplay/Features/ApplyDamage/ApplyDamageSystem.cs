@@ -16,10 +16,14 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage
 
         private ICompositeCondition _canApplyDamage;
 
+        private Transform _entityTransform;
+
         private IDisposable _requestDisposable;
 
         public void OnInit(Entity entity)
         {
+            _entityTransform = entity.Transform;
+            
             _damageRequest = entity.TakeDamageRequest;
             _damageEvent = entity.TakeDamageEvent;
 
@@ -42,10 +46,15 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.ApplyDamage
 
             if (_canApplyDamage.Evaluate() == false)
                 return;
-
+            
+            float oldHealth = _health.Value;
+            
             _health.Value = MathF.Max(_health.Value - damage, 0);
+            
+            float newHealth = _health.Value;
             _damageEvent.Invoke(damage);
-            Debug.Log("Я получил урон!");
+            
+            Debug.Log($"{_entityTransform} получил урон! {oldHealth} -> {newHealth}");
         }
     }
 }
