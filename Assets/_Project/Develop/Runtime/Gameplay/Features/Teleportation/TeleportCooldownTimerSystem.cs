@@ -29,7 +29,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Teleportation
 
         private void OnTeleportEnded()
         {
-            Debug.Log("Cooldown started");
+            Debug.Log("Teleport cooldown started");
             
             _currentTime.Value = _initialTime.Value;
             _inTeleportCooldown.Value = true;
@@ -45,7 +45,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Teleportation
             if (CooldownIsOver())
             {
                 _inTeleportCooldown.Value = false;
-                Debug.Log("Cooldown ended");
+                Debug.Log("Teleport cooldown ended");
             }
         }
 

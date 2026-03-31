@@ -57,7 +57,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Teleportation
             _inTeleportProcess.Value = true;
             _startTeleportEvent.Invoke();
 
-            Debug.Log($"Started teleportation after spending {teleportEnergyCost} energy");
+            Debug.Log($"Spent {teleportEnergyCost} energy and started a teleport");
         }
 
 

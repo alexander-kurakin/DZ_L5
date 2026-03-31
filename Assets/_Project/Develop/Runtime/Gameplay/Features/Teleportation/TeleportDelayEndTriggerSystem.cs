@@ -42,7 +42,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Teleportation
             
             if (currentTime >= _delay.Value)
             {
-                Debug.Log("Delay End");
+                Debug.Log("Delay before teleportation End");
                 _teleportDelayEndEvent.Invoke();
                 _alreadyTeleported = true;
             }

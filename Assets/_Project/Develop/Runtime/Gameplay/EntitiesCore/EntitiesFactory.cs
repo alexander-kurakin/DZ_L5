@@ -176,8 +176,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
                 .Add(new FuncCondition(() => entity.IsDead.Value))
                 .Add(new FuncCondition(() => entity.InDeathProcess.Value == false));
             
-            //more like canTakeIncomingDamage
-            ICompositeCondition canApplyDamage = new CompositeCondition()
+            ICompositeCondition canTakeIncomingDamage = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false));
 
             ICompositeCondition canSpendEnergy = canTeleport;
@@ -185,7 +184,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
             entity
                 .AddMustDie(mustDie)
                 .AddMustSelfRelease(mustSelfRelease)
-                .AddCanApplyDamage(canApplyDamage)
+                .AddCanApplyDamage(canTakeIncomingDamage)
                 .AddCanTeleport(canTeleport)
                 .AddCanSpendEnergy(canSpendEnergy);
 

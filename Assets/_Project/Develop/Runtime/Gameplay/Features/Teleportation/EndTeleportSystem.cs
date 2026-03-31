@@ -29,7 +29,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Teleportation
         {
             if (TimerIsDone(_teleportProcessCurrentTime.Value))
             {
-                Debug.Log("End teleportation");
+                Debug.Log("End teleportation process");
                 _inTeleportProcess.Value = false;
                 _endTeleportEvent.Invoke();
             }
