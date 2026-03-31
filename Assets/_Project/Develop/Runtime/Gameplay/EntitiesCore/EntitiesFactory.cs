@@ -4,6 +4,7 @@ using Assets._Project.Develop.Runtime.Gameplay.Features.AreaTakeDamage;
 using Assets._Project.Develop.Runtime.Gameplay.Features.Attack;
 using Assets._Project.Develop.Runtime.Gameplay.Features.Attack.Shoot;
 using Assets._Project.Develop.Runtime.Gameplay.Features.ContactTakeDamage;
+using Assets._Project.Develop.Runtime.Gameplay.Features.Energy;
 using Assets._Project.Develop.Runtime.Gameplay.Features.LifeCycle;
 using Assets._Project.Develop.Runtime.Gameplay.Features.MovementFeature;
 using Assets._Project.Develop.Runtime.Gameplay.Features.Sensors;
@@ -130,12 +131,16 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
             entity
                 .AddMaxHealth(new ReactiveVariable<float>(100))
                 .AddCurrentHealth(new ReactiveVariable<float>(100))
+                .AddMaxEnergy(new  ReactiveVariable<float>(100))
+                .AddCurrentEnergy(new ReactiveVariable<float>(100)) 
                 .AddIsDead()
                 .AddInDeathProcess()
                 .AddDeathProcessInitialTime(new ReactiveVariable<float>(2))
                 .AddDeathProcessCurrentTime()
                 .AddTakeDamageRequest()
                 .AddTakeDamageEvent()
+                .AddSpendEnergyRequest()
+                .AddSpendEnergyEvent()
                 .AddTeleportProcessInitialTime(new ReactiveVariable<float>(3))
                 .AddTeleportProcessCurrentTime()
                 .AddInTeleportProcess()
@@ -145,6 +150,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
                 .AddTeleportDelayTime(new ReactiveVariable<float>(1))
                 .AddTeleportDelayEndEvent()
                 .AddTeleportationRadius(new ReactiveVariable<float>(10))
+                .AddTeleportEnergyCost(new  ReactiveVariable<float>(35))
                 .AddTeleportCooldownProcessInitialTime(new ReactiveVariable<float>(2))
                 .AddTeleportCooldownProcessCurrentTime()
                 .AddInTeleportCooldownProcess();
@@ -164,14 +170,18 @@ namespace Assets._Project.Develop.Runtime.Gameplay.EntitiesCore
             //more like canTakeIncomingDamage
             ICompositeCondition canApplyDamage = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false));
+
+            ICompositeCondition canSpendEnergy = canTeleport;
             
             entity
                 .AddMustDie(mustDie)
                 .AddMustSelfRelease(mustSelfRelease)
                 .AddCanApplyDamage(canApplyDamage)
-                .AddCanTeleport(canTeleport);
+                .AddCanTeleport(canTeleport)
+                .AddCanSpendEnergy(canSpendEnergy);
             
             entity
+                .AddSystem(new SpendEnergySystem())
                 .AddSystem(new StartTeleportSystem())
                 .AddSystem(new TeleportProcessTimerSystem())
                 .AddSystem(new TeleportDelayEndTriggerSystem())
