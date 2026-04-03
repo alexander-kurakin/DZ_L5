@@ -31,12 +31,13 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Features.Teleportation
         private void OnTeleportDelayEnd()
         {
             Vector2 random2DPoint = _teleportationRadius.Value * UnityEngine.Random.insideUnitCircle;
-            Vector3 newPosition = new Vector3(random2DPoint.x, 0, random2DPoint.y);
+            Vector3 offset = new Vector3(random2DPoint.x, 0f, random2DPoint.y);
+
+            _transform.position += offset;
             
-            _transform.position = newPosition;
             _teleportImpactDamageRequest.Invoke();
             
-            Debug.Log($"Teleported Transform: {_transform.name}, in a random position:  {newPosition}" );
+            Debug.Log($"Teleported Transform: {_transform.name}, in a random position:  {_transform.position}" );
         }
 
         public void OnDispose()
